@@ -1,6 +1,6 @@
 # spring
 
-==== db 구축 ===
+#### db 구축
 ```
 --- 테이블 생성하기
 create table mvc_board(
