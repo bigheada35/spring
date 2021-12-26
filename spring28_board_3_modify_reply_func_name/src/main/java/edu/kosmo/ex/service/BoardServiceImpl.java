@@ -26,42 +26,31 @@ public class BoardServiceImpl implements BoardService{
 	
 	@Override
 	public BoardVO get(int bid){
-		
 		log.info("get()..");
-	
 		upHit(bid);
-		
 		return boardMapper.read(bid);
 		
 	}
 	
 	@Override
 	public void register(BoardVO board){
-		
 		log.info("register()..");
-		
 		boardMapper.insert(board);
-		
 	}
 	
 	@Override
 	public void modify(BoardVO board){
-		
 		log.info("modify()..");
-		
 		boardMapper.update(board);
-		
 	}
 	
 	@Override
 	public void remove(int bid){
 	//public void delete(BoardVO board){
-		
+
 		log.info("remove()..");
-		
 		boardMapper.delete(bid);
 		//boardMapper.delete(board);
-		
 	}
 	
 	// 이거 올려 주는 것이 중요, Transaction : 커밋과 롤백
@@ -72,20 +61,14 @@ public class BoardServiceImpl implements BoardService{
 	//@Transactional
 	@Override
 	public void registerReply(BoardVO board){
-		
 		log.info("registerReply()..");
-		
 		boardMapper.updateShape(board);
-		
 		boardMapper.insertReply(board);
-		
-		
 	}
 	
 	@Override
 	public void upHit(int bid){
 		log.info("upHit()..");
-		
 		boardMapper.updateHit(bid);
 	}
 	
