@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    Rectangle rec = new Rectangle(10,10);
+        Triangle tri = new Triangle(10,10);
+ -->
+ 	<bean id="rec" class="edu.kosmo.testHome.Rectangle">
+ 		<constructor-arg name="width" value="10"/>
+ 		<constructor-arg name="height" value="10"/>
+ 	</bean>
+ 	<bean id="try" class="edu.kosmo.testHome.Triangle">
+ 		<constructor-arg name="width" value="20"/>
+ 		<constructor-arg name="height" value="20"/>
+ 	</bean>
+ 
+</beans>

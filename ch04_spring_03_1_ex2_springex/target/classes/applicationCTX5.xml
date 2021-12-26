@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="shape" class="com.javalec.ex.shape2.Triangle">
+		<property name="height">
+			<value>5</value>
+		</property>
+		<property name="width">
+			<value>10</value>
+		</property>		
+	</bean>
+	
+
+	
+
+	
+
+
+</beans>
