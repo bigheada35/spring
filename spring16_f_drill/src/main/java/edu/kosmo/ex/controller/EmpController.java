@@ -37,7 +37,8 @@ public class EmpController {
 	@RequestMapping("/emp/emp_view")
 	public String emp_view(HttpServletRequest request, Model model) {
 		
-		model.addAttribute("emp", empService.getEmp() );
+		String empno = request.getParameter("empno");
+		model.addAttribute("emp", empService.getEmp(empno) );
 		
 		return "/emp/emp_view";
 	}
