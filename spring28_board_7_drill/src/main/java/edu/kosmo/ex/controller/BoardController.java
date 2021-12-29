@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import edu.kosmo.ex.page.Criteria;
 import edu.kosmo.ex.page.PageVO;
 import edu.kosmo.ex.service.BoardService;
-
 import edu.kosmo.ex.vo.BoardVO;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -20,10 +19,10 @@ import lombok.extern.log4j.Log4j;
 @Controller
 public class BoardController {
 	
-	
 	@Inject
 	private BoardService boardService;
-	
+
+
 	@GetMapping("/list")
 	public String list(Model model) {
 		
@@ -31,25 +30,19 @@ public class BoardController {
 		model.addAttribute("boardList", boardService.getList());
 		return "board/list";
 	}
-
 	
 	@GetMapping("/list2")
-	public String list(Criteria cri, Model model) {
+	public String list2(Criteria cri, Model model) {
 		
-		log.info("list()2..");
-		log.info("===================Criteria" + cri);
-		
+		log.info("list()..");
 		model.addAttribute("boardList", boardService.getList(cri));
-		
 		
 		int total = boardService.getTotal();
 		log.info("total" + total);
 		model.addAttribute("pageMaker", new PageVO(cri, total));
 		
-		return "board/list2";
+		return "board/list2";		
 	}
-
-	
 	
 	//-------------1-> 2-------------------
 	//http://localhost:8282/ex/content_view?bid=27
@@ -121,7 +114,7 @@ public class BoardController {
 		
 		return "redirect:list";
 	}	
+		
 	
-
 	
 }
