@@ -48,14 +48,14 @@ public class BoardController {
 		
 		return "board/tables";		
 	}
-	@GetMapping("/list4")
-	public String list4(Criteria cri, Model model) {
-		
-		log.info("list()..");
-		model.addAttribute("boardList", boardService.getList(cri));
-
-		return "board/tables_org";
-	}
+//	@GetMapping("/list4")
+//	public String list4(Criteria cri, Model model) {
+//		
+//		log.info("list()..");
+//		model.addAttribute("boardList", boardService.getList(cri));
+//
+//		return "board/tables_org";
+//	}
 	@GetMapping("/content_view")
 	public String content_view(BoardVO boardVO, Model model) {
 		

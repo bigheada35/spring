@@ -13,13 +13,13 @@
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<!-- <resources mapping="/resources/**" location="/resources/" />  -->
+	<resources mapping="/resources/**" location="/resources/" /> 
 	
 	
-	<!-- tables_org.jsp사용 위한 테스트 , list3-->
-	<resources mapping="/**" location="/resources/sb_admin/" />
+	<!-- ============tables_org.jsp사용 위한 테스트 ===========, list3-->
+	<!-- <resources mapping="/**" location="/resources/sb_admin/" />-->
 	
-	<!-- 2개를 같이 사용 할수 있는지 여부 테스트 list4-->
+	<!-- ============2개를 같이 사용 할수 있는지 여부 테스트 ,, 결과 NG ,,========list4-->
 	<!-- <resources mapping="/resources/**" location="/resources/" /> -->
 	
 	
