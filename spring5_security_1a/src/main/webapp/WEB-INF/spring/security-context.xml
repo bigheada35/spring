@@ -11,8 +11,13 @@
 	<http>
 		<intercept-url pattern="/security/all" access="permitAll" />
 		<intercept-url pattern="/security/member" access="hasRole('ROLE_MEMBER')" />
+		<intercept-url pattern="/security/admin" access="hasRole('ROLE_ADMIN')" />
 
 		<form-login/>
+		
+		<!-- 403 에러 처리 -->
+      	<access-denied-handler error-page="/security/accessError"/>
+      
 	</http>
 
 	<authentication-manager>
@@ -20,7 +25,8 @@
      <authentication-provider> 
        <user-service> 
          <user name="member" password="{noop}member" authorities="ROLE_MEMBER" /> 
-         <user name="manager" password="{noop}manager" authorities="ROLE_MEMBER" /> 
+         <!-- <user name="mananger" password="{noop}mananger" authorities="ROLE_MEMBER" /> --> 
+         <user name="admin" password="{noop}admin" authorities="ROLE_MEMBER,ROLE_ADMIN" />
        </user-service> 
      </authentication-provider>
 
