@@ -32,9 +32,9 @@ public class DataSourceTest {
 		
 		try(Connection conn = datasource.getConnection()){
 			System.out.println("===================3333");
-			//assertEquals(100, getLong(conn, "select 100 from dual"));
+			assertEquals(100, getLong(conn, "select 100 from dual"));
 			//assertEquals(1440, getLong(conn, "select 24*60 from dual"));
-			assertEquals(1450, getLong(conn, "select 24*60 from dual"));
+			//assertEquals(1450, getLong(conn, "select 24*60 from dual"));
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
