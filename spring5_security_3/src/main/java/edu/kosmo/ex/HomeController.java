@@ -36,7 +36,7 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
-		
+		System.out.println("---home---");
 		return "home";
 	}
 	@GetMapping("/user/userHome")
@@ -51,6 +51,7 @@ public class HomeController {
 	@GetMapping("/login/loginForm")
 	public String loginForm() {
 		log.info("Welcome Login Form");
+		System.out.println("---loginForm---loginForm2");
 		return "login/loginForm2";
 	}
 	

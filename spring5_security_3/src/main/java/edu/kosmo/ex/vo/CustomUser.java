@@ -34,7 +34,7 @@ public class CustomUser extends User {
    
    private EmpVO emp;
    
-   //기본?�으�?부모의 ?�성?��? ?�출?�야�??�상?�으�??�동
+ //기본적으로 부모의 생성자를 호출해야만 정상적으로 작동
 
    public CustomUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
       super(username, password, authorities);
