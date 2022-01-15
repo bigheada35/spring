@@ -1,88 +1,97 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE>
 <html>
 <head>
-	<title>Home</title>
-	
-	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
-	
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <title>Insert title here</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   
+   
+
     <script type="text/javascript">
-        $(document).ready( ()=>{
-        	console.log("------1-----");
-/*        	
-            $.ajax({
-                        type:"get",
-                        url:"${pageContext.request.contextPath}/sample/getText",
-                        success : function(data){
-                            console.log(data);
-                            $("#hello").text(data);
-                        },
-                        error: (xhr, textStatus, errorThrown)=>{
-
-                            console.log(xhr);
-                            console.log(textStatus);
-                            console.log(errorThrown);
-                        }
-
-
-            });
-*/            
-            console.log("------2-----");
-  /*          
-            $.ajax({
-                type:"get",
-                url:"${pageContext.request.contextPath}/sample/getSample",
-                success : function(data){
-                    console.log(data);
-                    $("#hello").text(data);
-                },
-                error: (xhr, textStatus, errorThrown)=>{
-
-                    console.log(xhr);
-                    console.log(textStatus);
-                    console.log(errorThrown);
-                }
-
-
-    		});
-*/            
-            console.log("------3-----");
-            $.ajax({
-                type:"get",
-                data:{weight:100,height:145},�
-                url:"${pageContext.request.contextPath}/sample/check.json",
-                success : function(data){
-                	console.log("------3-1----");
-                    console.log(data);
-                    $("#hello").text(data);
-                },
-                error: (xhr, textStatus, errorThrown)=>{
-
-                    console.log(xhr);
-                    console.log(textStatus);
-                    console.log(errorThrown);
-                }
-
-
-    		});
-            
-        });
-
-
+    $(document).ready(function () {
+        $(".a-delete").click(function(event) {
+           //prevendDefault()는 href로 연결해 주지 않고 
+           //단순히 click에 대한 처리를 하도록 해준다.
+           event.preventDefault();
+           console.log("ajax 호출전");
+           
+           var trObj = $(this).parent().parent();
+           
+           console.log($(this).attr("href"));
+           
+           $.ajax({
+               type : "DELETE",
+               url : $(this).attr("href"),
+               success: function (result) {       
+               console.log(result); 
+                 if(result == "SUCCESS"){
+                         //getList();
+                       $(trObj).remove();  
+                                 
+                    }                       
+                  },
+                  error: function (e) {
+                      console.log(e);
+                  }         
+           
+           });   
+        
+        });   
+     
+     });
 
 
     </script>
-	
-	
-	
+       
+   
+   
+   
 </head>
-<body>
-<h1>
-	Hello world!  
-</h1>
 
-<P>  The time on the server is ${serverTime}... </P>
-	<div id="hello">
+
+<body>
+
+		<table width="500" cellpadding="0" cellspacing="0" border="1"> 
 		
+			<tr>
+				<td>번호:</td>
+				<td>이름:</td>
+				<td>제목:</td>
+				<td>날짜:</td>
+				<td>히트:</td>
+			
+			</tr>
+			
+			<c:forEach var="board" items="${list}">
+			<tr>
+				<td>${board.bid}</td>
+				<td>${board.bname}</td>
+				<td>
+					<c:forEach begin="1" end="${board.bindent}"> [Re] </c:forEach>
+ 						<a href="content_view.do?bid=${board.bid}">${board.btitle}</a>
+				</td>
+				<td>${board.bdate}</td>
+				<td>${board.bhit}</td>
+				
+				<td><a class="a-delete" data-bid='${board.bid}' href="${pageContext.request.contextPath}/rest/board/${board.bid}">삭제</a></td>
+					
+				</td>
+				
+			</tr>	
+			</c:forEach>
+			
+			<tr>
+				<td colspan="5"> 
+					<a href="write_view">글작성</a>
+				</td>
+			</tr>
+		</table>
+
+
+
+	<div id="hello">
 	</div>
 
 </body>
