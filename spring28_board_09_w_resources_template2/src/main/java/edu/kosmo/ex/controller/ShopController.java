@@ -22,7 +22,6 @@ public class ShopController {
 	private BoardService boardService;
 
 	
-	
 	//sj0117
 	@GetMapping("/404.html")
 	public String err404() { 

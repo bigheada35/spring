@@ -1,6 +1,8 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>  
 <html lang="en">
-<head>
+<head> 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -992,7 +994,7 @@
 								<li><a href="#">Contact Us</a></li>
 								<li><a href="#">Order Status</a></li>
 								<li><a href="#">Change Location</a></li>
-								<li><a href="#">FAQ’s</a></li>
+								<li><a href="#">FAQ?�s</a></li>
 							</ul>
 						</div>
 					</div>

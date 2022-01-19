@@ -24,6 +24,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
+		System.out.println("------home-----"); 
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
@@ -33,7 +34,8 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		//sj0117 return "home";
+		System.out.println("------shop/index-----");
+		//sj0117return "home";
 		return "shop/index";//sj0117 
 	}
 	

@@ -38,6 +38,6 @@
    <!-- mybatis:scan 해당 패키지 밑에 있는 특정 인터페이스만 Mapper로 인식 -->
    <mybatis-spring:scan base-package="edu.kosmo.ex.mapper" annotation="org.apache.ibatis.annotations.Mapper" />
       
-   <context:component-scan base-package="edu.kosmo.ex.service,edu.kosmo.ex.dao" />
+   <context:component-scan base-package="edu.kosmo.ex.service" />
    
 </beans>      
