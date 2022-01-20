@@ -290,7 +290,7 @@
 					<div class="product-details"><!--product-details-->
 						<div class="col-sm-5">
 							<div class="view-product">
-								<img src="${pageContext.request.contextPath}/resources/eshopper/images/product-details/1.jpg" alt="" />
+								<img src="${pageContext.request.contextPath}/resources/eshopper/images/shop/${product.product_img}" alt="" />
 								<h3>ZOOM</h3>
 							</div>
 							<div id="similar-product" class="carousel slide" data-ride="carousel">
@@ -332,7 +332,7 @@
 								<p>Web ID: 1089772</p>
 								<img src="${pageContext.request.contextPath}/resources/eshopper/images/product-details/rating.png" alt="" />
 								<span>
-									<span>US $59</span>
+									<span>KRW ${product.product_price} WON</span>
 									<label>Quantity:</label>
 									<input type="text" value="3" />
 									<button type="button" class="btn btn-fefault cart">

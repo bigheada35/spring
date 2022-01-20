@@ -24,7 +24,9 @@ public class BoardVOTest2 {
 	@Test
 	public void testSetBname() {
 		System.out.println("======x=========1========");
+		System.out.println("--x1--");
 		boardVO.setBname("Kim");
+		
 		
 		assertEquals("Kim", boardVO.getBname());
 		System.out.println("======y=========1========");
@@ -35,7 +37,10 @@ public class BoardVOTest2 {
 	@Test
 	public void testSetBid() {
 		System.out.println("======x=========2========");
+		System.out.println("--x2--");
 		boardVO.setBid(20);
+		
+		
 		assertEquals(20, boardVO.getBid());
 		System.out.println("======y=========2========");
 		

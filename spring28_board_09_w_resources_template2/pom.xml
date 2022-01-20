@@ -281,6 +281,29 @@
                <mainClass>org.test.int1.Main</mainClass>
             </configuration>
          </plugin>
+         
+         
+           <!-- 플러그인에대한 다운로드  -->
+ 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.2</version>
+			</plugin>
+			
+			<!-- 배포 -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<url>http://localhost:8282/manager/text</url>
+					<username>admin</username>
+					<password>1234</password>
+				</configuration>
+			</plugin>
+         
+         
+         
       </plugins>
    </build>
 </project>

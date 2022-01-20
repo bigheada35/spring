@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import edu.kosmo.ex.page.Criteria;
 import edu.kosmo.ex.page.PageVO;
-import edu.kosmo.ex.service.BoardService;
-import edu.kosmo.ex.vo.BoardVO;
+import edu.kosmo.ex.service.ProductService;
+import edu.kosmo.ex.vo.ProductVO;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
@@ -19,8 +19,29 @@ import lombok.extern.log4j.Log4j;
 @Controller
 public class ShopController {
 	@Inject
-	private BoardService boardService;
+	private ProductService productService;
 
+	@GetMapping("/shop.html")
+	public String shop(Model model) { 
+
+		log.info("list()..");
+		log.info("======shop.html======");
+		System.out.println("-----shop.html-----");
+		
+		model.addAttribute("productList", productService.getList());
+		
+		return "shop/shop"; //use without .jsp
+	}	
+	//sj0120@GetMapping("/product-details.html")
+	@GetMapping(value={"/product-details.html", "/product-details"})
+	public String productDetails(ProductVO productVO, Model model) { 
+		System.out.println("-----product-details.html-----");
+		int product_id = productVO.getProduct_id();
+		System.out.println("======== product_id : " + product_id);
+		model.addAttribute("product", productService.get(product_id));
+		return "shop/product-details"; //use without .jsp
+	}		
+	
 	
 	//sj0117
 	@GetMapping("/404.html")
@@ -63,20 +84,14 @@ public class ShopController {
 		System.out.println("-----login.html-----");
 		return "shop/login"; //use without .jsp
 	}	
-	@GetMapping("/product-details.html")
-	public String productDetails() { 
-		System.out.println("-----product-details.html-----");
-		return "shop/product-details"; //use without .jsp
-	}	
+
 	@GetMapping("/sendemail.html")
 	public String sendemail() { 
 		System.out.println("-----sendemail.html-----");
 		return "shop/sendemail"; //use without .jsp
 	}	
-	@GetMapping("/shop.html")
-	public String shop() { 
-		System.out.println("-----shop.html-----");
-		return "shop/shop"; //use without .jsp
-	}		
+	
+	
+	
 	
 }
