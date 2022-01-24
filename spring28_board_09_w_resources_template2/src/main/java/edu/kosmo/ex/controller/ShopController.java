@@ -38,9 +38,16 @@ public class ShopController {
 		System.out.println("-----product-details.html-----");
 		int product_id = productVO.getProduct_id();
 		System.out.println("======== product_id : " + product_id);
+		if(product_id == 0) {
+			product_id = 1;
+		} 
+		System.out.println("======== product_id : " + product_id);
 		model.addAttribute("product", productService.get(product_id));
 		return "shop/product-details"; //use without .jsp
-	}		
+	}
+
+	
+	
 	
 	
 	//sj0117
@@ -59,11 +66,7 @@ public class ShopController {
 		System.out.println("-----blog-single.html-----");
 		return "shop/blog-single"; //use without .jsp
 	}	
-	@GetMapping("/cart.html")
-	public String cart() { 
-		System.out.println("-----cart.html-----");
-		return "shop/cart"; //use without .jsp
-	}	
+	
 	@GetMapping("/checkout.html")
 	public String checkout() { 
 		System.out.println("-----checkout.html-----");

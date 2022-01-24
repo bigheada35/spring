@@ -336,8 +336,12 @@
 									<label>Quantity:</label>
 									<input type="text" value="3" />
 									<button type="button" class="btn btn-fefault cart">
-										<i class="fa fa-shopping-cart"></i>
-										Add to cart
+									
+										<a href="cart?product_id=${product.product_id}">
+											<i class="fa fa-shopping-cart"></i>
+											Add to cart
+										</a>
+										
 									</button>
 								</span>
 								<p><b>Availability:</b> In Stock</p>
