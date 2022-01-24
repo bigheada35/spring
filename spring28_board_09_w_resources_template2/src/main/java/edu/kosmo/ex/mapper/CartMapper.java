@@ -12,11 +12,11 @@ import edu.kosmo.ex.vo.ProductVO;
 public interface CartMapper {
 	List<CartVO> getList();
 	CartVO read(int cart_product_id);
-	void insert(CartVO order);
-	void update(CartVO order);
+	void insert(CartVO cart);
+	void update(CartVO cart);
 	void delete(int cart_product_id);
-	void updateShape(CartVO order);
-	void insertReply(CartVO order);
+	void updateShape(CartVO cart);
+	void insertReply(CartVO cart);
 	void updateHit(int cart_product_id);
 	
 	int getTotalCount();

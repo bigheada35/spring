@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import edu.kosmo.ex.page.Criteria;
 import edu.kosmo.ex.page.PageVO;
+import edu.kosmo.ex.service.CartService;
 import edu.kosmo.ex.service.ProductService;
 import edu.kosmo.ex.vo.ProductVO;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,11 @@ public class ShopController {
 	@Inject
 	private ProductService productService;
 
+	
+	@Inject
+	private CartService cartService;
+	
+	
 	@GetMapping("/shop.html")
 	public String shop(Model model) { 
 
@@ -48,6 +54,15 @@ public class ShopController {
 
 	
 	
+	@GetMapping("/checkout.html")
+	public String checkout(ProductVO productVO, Model model) { 
+		System.out.println("-----checkout.html-----");
+		model.addAttribute("cartProductList", cartService.getList());
+		return "shop/checkout"; //use without .jsp
+	}	
+	
+	
+	
 	
 	
 	//sj0117
@@ -67,11 +82,7 @@ public class ShopController {
 		return "shop/blog-single"; //use without .jsp
 	}	
 	
-	@GetMapping("/checkout.html")
-	public String checkout() { 
-		System.out.println("-----checkout.html-----");
-		return "shop/checkout"; //use without .jsp
-	}	
+	
 	@GetMapping("/contact-us.html")
 	public String contactUs() { 
 		System.out.println("-----contact-us.html-----");

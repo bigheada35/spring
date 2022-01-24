@@ -337,7 +337,7 @@
 									<input type="text" value="3" />
 									<button type="button" class="btn btn-fefault cart">
 									
-										<a href="cart?product_id=${product.product_id}">
+										<a href="cart_add?product_id=${product.product_id}">
 											<i class="fa fa-shopping-cart"></i>
 											Add to cart
 										</a>

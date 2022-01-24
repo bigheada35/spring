@@ -173,7 +173,7 @@
 						
 								<tr>
 									<td class="cart_product">
-										<a href=""><img src="${pageContext.request.contextPath}/resources/eshopper/images/shop/${cartProduct.productVO.product_img}" alt=""></a>
+										<a href=""><img src="${pageContext.request.contextPath}/resources/eshopper/images/shop/${cartProduct.productVO.product_img}" alt="" width=100></a>
 									</td>
 									<td class="cart_description">
 										<h4><a href="">${cartProduct.productVO.product_name}</a></h4>
@@ -193,7 +193,7 @@
 										<p class="cart_total_price">$59</p>
 									</td>
 									<td class="cart_delete">
-										<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+										<a class="cart_quantity_delete" href="cart_delete?cart_product_id=${cartProduct.cartVO.cart_product_id}"><i class="fa fa-times"></i></a>
 									</td>
 								</tr>
 

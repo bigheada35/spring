@@ -69,9 +69,9 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public void register(CartVO board) {
+	public void register(CartVO cart) {
 		log.info("register()..");
-		cartMapper.insert(board);
+		cartMapper.insert(cart);
 	}
 
 	@Override

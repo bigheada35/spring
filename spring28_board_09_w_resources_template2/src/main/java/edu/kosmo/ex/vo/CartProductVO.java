@@ -13,7 +13,11 @@ import lombok.ToString;
 @Setter
 @ToString
 public class CartProductVO {
-	CartVO cartVO;
-	ProductVO productVO;
+	private CartVO cartVO;
+	private ProductVO productVO;
+	
+	private int cart_product_id;
+	
+	
 }
 
