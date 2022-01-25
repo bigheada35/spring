@@ -38,7 +38,7 @@ public class CartController {
 	public String cart_add(ProductVO productVO, Model model) {
 		log.info("list()..");
 		log.info("======cart.html  or  cart======");
-		
+		 
 		int product_id = productVO.getProduct_id();
 		System.out.println("======== product_id : " + product_id);
 		// ------------------------------------------
