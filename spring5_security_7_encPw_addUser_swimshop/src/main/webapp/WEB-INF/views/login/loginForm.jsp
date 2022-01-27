@@ -17,7 +17,7 @@
 <form:form name="f" action="${loginUrl}" method="POST">
     <c:if test="${param.error != null}">
         <p>아이디와 비밀번호가 잘못되었습니다.</p>
-    </c:if>
+    </c:if> 
     <c:if test="${param.logout != null}">
         <p>로그아웃 하였습니다.</p>
     </c:if>
@@ -28,7 +28,7 @@
     <p>
         <label for="password">비밀번호</label>
         <input type="password" id="password" name="password"/>
-    </p>
+    </p> 
     <%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>
     <button type="submit" class="btn">로그인</button>
    

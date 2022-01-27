@@ -21,12 +21,17 @@
         
         <!-- <intercept-url pattern="/**" access="hasAnyRole('USER, ADMIN')" /> -->
         
-        <form-login login-page="/login/loginForm"
+        <!-- ssj 0127 -->
+        <!-- <form-login login-page="/login/loginForm"
+                    default-target-url="/"
+                    authentication-failure-url="/login/loginForm?error"
+                    username-parameter="username"
+                    password-parameter="pw" /> -->
+         <form-login login-page="/login.html"
                     default-target-url="/"
                     authentication-failure-url="/login/loginForm?error"
                     username-parameter="username"
                     password-parameter="pw" />
-        
          <logout logout-url="/logout"
                 logout-success-url="/" /> 
                 

@@ -152,19 +152,29 @@
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form"><!--login form-->
-						<h2>Login to your account</h2>
+						<h2>로그인</h2>
 						<!-- <form action="#"> -->
 						<!-- ssj 0127 -->
-						<form:form name ="f" action="${loginUrl}" method="post">
+						<c:url value="/login" var="loginUrl" />
+						<p>${loginUrl}</p>
+						<form:form name ="f" action="${loginUrl}" method="POST">
 							<!-- ssj 0127  username pw -->
+							<c:if test="${param.error != null}">
+        						<p>아이디와 비밀번호가 잘못되었습니다.</p>
+    						</c:if>
+    					    <c:if test="${param.logout != null}">
+        						<p>로그아웃 하였습니다.</p>
+    						</c:if>
 							<input type="text" name="username" placeholder="Name or UserName" />
-							<input type="email" name="pw" placeholder="Email Address or Password" />
-							<span>
+							<!-- <input type="email" id="password" name="password" placeholder="Email Address or Password" /> -->
+							<input type="password" name="pw" placeholder="Email Address or Password" />
+							<span> 
 								<input type="checkbox" class="checkbox"> 
 								Keep me signed in
 							</span>
 							<button type="submit" class="btn btn-default">Login</button>
-						</form>
+						<!-- </form> -->
+						</form:form>
 					</div><!--/login form-->
 				</div>
 				<div class="col-sm-1">
@@ -172,14 +182,18 @@
 				</div>
 				<div class="col-sm-4">
 					<div class="signup-form"><!--sign up form-->
-						<h2>New User Signup!</h2>
-						<form action="#">
-							<!-- ssj 0127 -->
-							<input type="text" placeholder="Name "/>
+						<h2>회원가입</h2>
+						<!-- ssj 0127 -->
+						<!-- <form action="#"> -->
+						<c:url value="/add/addUser" var="addUserUrl" />
+						<p>${addUserUrl}</p>
+						<form:form name="frmMember" action="${addUserUrl}" method="POST">
+							<input type="text" name="username"  placeholder="Name "/>
 							<!-- <input type="email" placeholder="Email Address"/> -->
-							<input type="password" placeholder="Password"/>
+							<input type="password"name="password" placeholder="Password"/>
 							<button type="submit" class="btn btn-default">Signup</button>
-						</form>
+						<!-- </form> -->
+						</form:form>
 					</div><!--/sign up form-->
 				</div>
 			</div>
