@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.kosmo.ex.mapper.CartMapper">
+   
+   <select id="getList" resultType="edu.kosmo.ex.vo.CartVO">
+   <![CDATA[
+	  select * from P2CART
+   ]]>
+   </select>
+   
+   <select id="read" resultType="edu.kosmo.ex.vo.CartVO">
+   <![CDATA[
+	  select * from P2CART where cart_product_id = #{cart_product_id}
+   ]]>
+   </select>
+
+   <insert id="insert">
+   <![CDATA[
+		insert into P2CART (CART_PRODUCT_ID, CART_PRODUCT_QUANTITY, P2USER_MEMBER_ID, P2PRODUCT_PRODUCT_ID, CART_PRODUCT_TOTAL_PRICE) values (P2CART_seq.nextval, #{cart_product_quantity}, #{p2user_member_id}, #{p2product_product_id}, #{cart_product_total_price})
+   ]]>
+   </insert>
+ 
+   <update id="update">
+   <![CDATA[
+		update P2CART set cart_product_quantity=#{cart_product_quantity}, p2user_member_id=#{p2user_member_id}, p2product_product_id=#{p2product_product_id}, cart_product_total_price=#{cart_product_total_price} where cart_product_id=#{cart_product_id}
+   ]]>
+   </update>
+   
+   <select id="delete">
+   <![CDATA[
+		delete from P2CART where cart_product_id=#{cart_product_id}
+   ]]>
+   </select>
+   
+   <update id="updateShape">
+   <![CDATA[
+		update P2ORDER set bStep = bStep + 1 where bGroup = #{bgroup} and bStep > #{bstep}
+   ]]>
+   </update>  
+	  
+   <insert id="insertReply">
+   <![CDATA[
+		insert into P2ORDER (product_id, bName, bTitle, bContent, bGroup, bStep, bIndent) values (P2ORDER_seq.nextval, #{bname}, #{btitle}, #{bcontent}, #{bgroup}, #{bstep}+1, #{bindent}+1)
+   ]]>
+   </insert>
+	  
+   <update id="updateHit">
+   <![CDATA[
+		update P2ORDER set bhit = bhit + 1 where product_id = #{bit}
+   ]]>
+   </update>
+
+	<select id="getTotalCount" resultType="int">
+  <![CDATA[
+  	select count(*) from P2ORDER
+  ]]>
+	</select>
+
+
+	<select id="getListWithPaging"
+		resultType="edu.kosmo.ex.vo.CartVO">
+	<![CDATA[
+		SELECT * FROM (
+             SELECT ROWNUM AS RNUM, A.* FROM (
+                      SELECT
+                            *
+                        FROM
+                            P2ORDER 
+                        order by bGroup desc, bStep asc   
+            ) A WHERE ROWNUM <= #{pageNum} * #{amount}
+        ) WHERE RNUM > (#{pageNum}-1) * #{amount}
+		
+	]]>
+	</select>    
+</mapper>
