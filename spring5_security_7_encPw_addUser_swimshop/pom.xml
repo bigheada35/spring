@@ -243,7 +243,14 @@
          <artifactId>spring-security-taglibs</artifactId>
          <version>${org.security-version}</version>
       </dependency>
-
+      
+		 <!-- Kakao 사용을 위한json -->
+	<!-- https://mvnrepository.com/artifact/org.json/json -->
+	<dependency>
+	    <groupId>org.json</groupId>
+	    <artifactId>json</artifactId>
+	    <version>20210307</version>
+	</dependency>
 
 
    </dependencies>
