@@ -1,11 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>login</title>
+
+<!-- ssj 0128 -->
+<!-- csrf meta tag -->
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
+
+
+
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script type="text/javascript">
 		Kakao.init('7df15154cd15e7e3fefcfd0b7d57931d');
@@ -69,23 +78,35 @@
 </a>
 <script type="text/javascript">
   function loginWithKakao() {
+	  
+			<!-- ssj 0128 -->
+		<!-- csrf -->
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		  
+	  
     Kakao.Auth.login({
       success: function(authObj) {
         alert(JSON.stringify(authObj))
         console.log("----nnnnn-:  " + JSON.stringify(authObj));
+        
+
         
         $.ajax({
             type: 'POST',
             url: `/kakao/getAccesToken`,
             contentType: "application/json",
             data: JSON.stringify({'token':authObj['access_token']}),
+            beforeSend: function(xhr) {  /* ssj 0128 csrf  */
+                xhr.setRequestHeader(header, token); /* ssj 0128 csrf  */
+             },
             success: function (response) {
                 localStorage.setItem("token", response['token']);
                 localStorage.setItem("username", response['username']);
                 //ssj  location.href = '/';
                 //ssj
                 console.log(" ---");
-            }
+            } 
         })
         
         

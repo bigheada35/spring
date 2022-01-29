@@ -44,6 +44,7 @@ public class KakaoController {
 		
 		return "/kakao/login2";
 	}
+	
 	@GetMapping("/login3")
 	public String login3(Model model) {
 		
@@ -52,4 +53,5 @@ public class KakaoController {
 		
 		return "/kakao/login3";
 	}
+
 }

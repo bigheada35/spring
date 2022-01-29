@@ -12,6 +12,10 @@
         <intercept-url pattern="/" access="permitAll" />
         <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
         
+        
+        <!-- ssj 0128 -->
+        <intercept-url pattern="/kakao/getAccesToken" access="permitAll" />
+        
         <!-- ssj 0127 -->
         <intercept-url pattern="/cart.html" access="hasRole('USER')" />
         <intercept-url pattern="/cart_add" access="hasRole('USER')" />
@@ -36,6 +40,10 @@
                 logout-success-url="/" /> 
                 
         <access-denied-handler error-page="/security/accessDenied" />
+
+		<!-- ssj 0128 -->
+     <!--    <csrf disabled="true"/> -->
+        
     </http>    
     
     <beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
