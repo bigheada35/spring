@@ -34,5 +34,7 @@ public class UserService {
       userMapper.insertUser(userVO);
       userMapper.insertAuthorities(userVO);
    }
+   
+
 }
 

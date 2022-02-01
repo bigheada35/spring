@@ -1,22 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!-- 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
--->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>login</title>
-
-<!-- ssj 0128 -->
-<!-- csrf meta tag -->
-<meta name="_csrf" content="${_csrf.token}"/>
-<meta name="_csrf_header" content="${_csrf.headerName}"/>
-
-
-
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script type="text/javascript">
 		Kakao.init('7df15154cd15e7e3fefcfd0b7d57931d');
@@ -24,8 +13,6 @@
 	</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
-
-
 	$(function() {
 		
 		$('#logBt1').click(function() {
@@ -59,9 +46,6 @@
 					// "loginCheck.member", -> 비암호화시 사용할 맵핑주소   
  					/* $('#loginForm').submit();  */
 	})//func ready
-	
-	
-	
 </script>
 </head>
 <body>
@@ -85,47 +69,23 @@
 </a>
 <script type="text/javascript">
   function loginWithKakao() {
-	        
-
-	  
     Kakao.Auth.login({
-    	
-    	
       success: function(authObj) {
-        //alert(JSON.stringify(authObj))
+        alert(JSON.stringify(authObj))
         console.log("----nnnnn-:  " + JSON.stringify(authObj));
-        
-		<!-- ssj 0128 -->
-		<!-- csrf -->
-		var token = $("meta[name='_csrf']").attr("content");
-		var header = $("meta[name='_csrf_header']").attr("content");
-		  
         
         $.ajax({
             type: 'POST',
-            url: `${pageContext.request.contextPath}/kakao/getAccesToken`,
-            beforeSend: function(xhr) {  /* ssj 0128 csrf  */
-               xhr.setRequestHeader(header, token); /* ssj 0128 csrf  */
-            //	xhr.setRequestHeader("X-CSRF-Token", "${_csrf.token}");
-            },
-			statusCode: {
-				404: function() {
-					alert( "404 ,page not found" );
-				}
-			},
+            url: `/kakao/getAccesToken`,
             contentType: "application/json",
             data: JSON.stringify({'token':authObj['access_token']}),
-
             success: function (response) {
-            	console.log("----응답:----");
                 localStorage.setItem("token", response['token']);
                 localStorage.setItem("username", response['username']);
                 //ssj  location.href = '/';
                 //ssj
-                console.log("---token : " + token);
-                console.log("---response username : " + response['username']);
-                //console.log("---username : " + username);
-            } 
+                console.log(" ---");
+            }
         })
         
         
