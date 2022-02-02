@@ -52,7 +52,7 @@
     <beans:bean id="userCustomDetailsService" class="edu.kosmo.ex.security.UserCustomDetailsService"/> 
      
      <!-- ssj temp -->
-<!--     <beans:bean id="authenticationManager" class="org.springframework.security.authentication.AuthenticationManager"/> --> 
+<!--  <beans:bean id="authenticationManager" class="org.springframework.security.authentication.AuthenticationManager"/> --> 
      
     <!--  provider  -->
     <!-- ssj temp -->
