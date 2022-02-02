@@ -25,7 +25,9 @@ public class KakaoRestController {
     private KakaoService kakaoService;
     
     @PostMapping(value = "/getAccesToken")
-    public ResponseEntity<?> createAuthenticationTokenByKakao(@RequestBody SocialLoginDto socialLoginDto) throws Exception {
+    //public ResponseEntity<?> createAuthenticationTokenByKakao(@RequestBody SocialLoginDto socialLoginDto) throws Exception {
+    //public JwtResponse createAuthenticationTokenByKakao(@RequestBody SocialLoginDto socialLoginDto) throws Exception {
+    public String createAuthenticationTokenByKakao(@RequestBody SocialLoginDto socialLoginDto) throws Exception {
     	System.out.println("----- > kakaoLogin : ");
         String username = kakaoService.kakaoLogin(socialLoginDto.getToken());
         System.out.println("----- username : " + username);
@@ -35,8 +37,31 @@ public class KakaoRestController {
         final String token = jwtTokenUtil.generateToken(userDetails);
         return ResponseEntity.ok(new JwtResponse(token, userDetails.getUsername()));
         */
-        System.out.println("==== TODO: temp ====");
-        return ResponseEntity.ok(new JwtResponse("tok1234", "username_abcd"));
+        System.out.println("==== TODO: temp====");
+
+        //return ResponseEntity.ok(new JwtResponse("token", "username_abcd"));
+        return "redirect:/";
+        //return (new JwtResponse("token", "username_abcd"));
     }
-	
+
+    @PostMapping(value = "/getAccesToken.json")
+    //public ResponseEntity<?> createAuthenticationTokenByKakao(@RequestBody SocialLoginDto socialLoginDto) throws Exception {
+    public JwtResponse createAuthenticationTokenByKakao2(@RequestBody SocialLoginDto socialLoginDto) throws Exception {
+    //public String createAuthenticationTokenByKakao2(@RequestBody SocialLoginDto socialLoginDto) throws Exception {
+    	System.out.println("----- > kakaoLogin : ");
+        String username = kakaoService.kakaoLogin(socialLoginDto.getToken());
+        System.out.println("----- username : " + username);
+        System.out.println("==== TODO: userDetailsService ====");
+       /*
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        final String token = jwtTokenUtil.generateToken(userDetails);
+        return ResponseEntity.ok(new JwtResponse(token, userDetails.getUsername()));
+        */
+        System.out.println("==== TODO: temp====k");
+
+        //return ResponseEntity.ok(new JwtResponse("token", "username_abcd"));
+        return (new JwtResponse("token", "username_abcd"));
+        //return "redirect:/";
+    }   
+    
 }

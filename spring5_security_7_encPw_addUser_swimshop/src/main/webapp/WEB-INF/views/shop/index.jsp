@@ -26,6 +26,66 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="${pageContext.request.contextPath}/resources/eshopper/images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="${pageContext.request.contextPath}/resources/eshopper/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/resources/eshopper/images/ico/apple-touch-icon-57-precomposed.png">
+    
+    <!-- 카카오 로그인 -->
+    <meta name="_csrf" content="${_csrf.token}"/>
+	<meta name="_csrf_header" content="${_csrf.headerName}"/>
+  	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+		<script type="text/javascript">
+			Kakao.init('7df15154cd15e7e3fefcfd0b7d57931d');
+			console.log(Kakao.isInitialized());	
+		</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript">
+	  	function loginWithKakao() {
+		    Kakao.Auth.login({
+			      success: function(authObj) {
+			        //alert(JSON.stringify(authObj))
+			        console.log("----nnnnn-:  " + JSON.stringify(authObj));
+			        
+					<!-- ssj 0128 -->
+					<!-- csrf -->
+					var token = $("meta[name='_csrf']").attr("content");
+					var header = $("meta[name='_csrf_header']").attr("content");
+					  
+				        $.ajax({
+			            type: 'POST',
+			            url: `${pageContext.request.contextPath}/kakao/getAccesToken`,
+			            beforeSend: function(xhr) {  /* ssj 0128 csrf  */
+			               xhr.setRequestHeader(header, token); /* ssj 0128 csrf  */
+			            //	xhr.setRequestHeader("X-CSRF-Token", "${_csrf.token}");
+			            },
+						statusCode: {
+							404: function() {
+								alert( "404 ,page not found" );
+							}
+						},
+			            contentType: "application/json",
+			            data: JSON.stringify({'token':authObj['access_token']}),
+	
+			            success: function (response) {
+			            	console.log("----응답:----");
+			            	console.log("---response:"+response);
+			            	console.log("---response2:" + JSON.stringify(authObj));
+			            	console.log("---response['token']:"+ response['token']);
+			                localStorage.setItem("token", response['token']);
+			                localStorage.setItem("username", response['username']);
+			              	//ssj
+			                location.href = '${pageContext.request.contextPath}/';
+			                //ssj
+			                console.log("---token : " + token);
+			                console.log("---response username : " + response['username']);
+			                //console.log("---username : " + username);
+			            } 
+			        })
+		      },
+		      fail: function(err) {
+		        alert(JSON.stringify(err))
+		      },
+		    })
+		}
+	</script>    
+    
 </head><!--/head-->
 
 <body>
@@ -102,6 +162,16 @@
 								<li><a href="shop/cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
 								<sec:authorize access="isAnonymous()">
 									<li><a href="login.html"><i class="fa fa-lock"></i>로그인</a></li>
+									
+									<!-- 카카오 로그인 -->
+									<a id="custom-login-btn" href="javascript:loginWithKakao()">
+								    <img
+									    src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg"
+									    height="40"
+									    alt="카카오 로그인 버튼"
+								  	/>
+
+								</a>
 								</sec:authorize>
 								<sec:authorize access="isAuthenticated()">
 									<li><a href="logout"><i class="fa fa-lock"></i> 로그아웃</a></li>

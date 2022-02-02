@@ -50,9 +50,14 @@
          
     <beans:bean id="customNoOpPasswordEncoder" class="edu.kosmo.ex.security.CustomNoOpPasswordEncoder"/> 
     <beans:bean id="userCustomDetailsService" class="edu.kosmo.ex.security.UserCustomDetailsService"/> 
-    
+     
+     <!-- ssj temp -->
+<!--     <beans:bean id="authenticationManager" class="org.springframework.security.authentication.AuthenticationManager"/> --> 
+     
     <!--  provider  -->
-      <authentication-manager>
+    <!-- ssj temp -->
+    <authentication-manager id="authenticationManager"> 
+  	<!-- <authentication-manager>  -->
         <authentication-provider user-service-ref="userCustomDetailsService">
         <password-encoder ref="bcryptPasswordEncoder"/> 
         </authentication-provider>

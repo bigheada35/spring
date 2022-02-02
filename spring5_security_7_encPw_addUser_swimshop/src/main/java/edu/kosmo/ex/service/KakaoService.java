@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -39,8 +40,8 @@ public class KakaoService {
 	   private UserMapper userMapper;
 	   
 	   //@Inject
-	   //@Autowired
-	   //private AuthenticationManager authenticationManager;
+	   @Autowired
+	   private AuthenticationManager authenticationManager;
 
     //private final PasswordEncoder passwordEncoder;
     //private final UserRepository userRepository;
@@ -113,7 +114,8 @@ public class KakaoService {
         if (kakaoUser == null) {
 	        
 	        String encode = passEncoder.encode(email);
-	        
+	        System.out.println("---email:" + email);
+	        System.out.println("---encode:" + encode);
 	        UserVO userVO = new UserVO();
 	        
 	        userVO.setUsername(username);
@@ -130,11 +132,22 @@ public class KakaoService {
         System.out.println("-----TODO :  로그인 처리----");
         
         // 로그인 처리
-        private AuthenticationManager authenticationManager = new AuthenticationManager();
         //ssj Authentication kakaoUsernamePassword = new UsernamePasswordAuthenticationToken(username, password);
         //Authentication kakaoUsernamePassword = new UsernamePasswordAuthenticationToken(username, passEncoder.encode(email));
         //Authentication authentication = authenticationManager.authenticate(kakaoUsernamePassword);
         //SecurityContextHolder.getContext().setAuthentication(authentication);
+        
+        System.out.println("-----TODO :  로그인 처리 2----");
+        //Authentication kakaoUsernamePassword = new UsernamePasswordAuthenticationToken(username, passEncoder.encode(email));
+        Authentication kakaoUsernamePassword = new UsernamePasswordAuthenticationToken(username, email);
+        Authentication authentication = authenticationManager.authenticate(kakaoUsernamePassword);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        
+        System.out.println("---username: " + username);
+        System.out.println("---email: " + email);
+        System.out.println("---passEncoder.encode(email): " + passEncoder.encode(email));
+        //SecurityContext context = SecurityContextHolder.createEmptyContext();
+        //context.setAuthentication(kakaoUsernamePassword);
 
         return username;
     }
