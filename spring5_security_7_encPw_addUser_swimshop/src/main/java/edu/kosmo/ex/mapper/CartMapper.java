@@ -11,6 +11,8 @@ import edu.kosmo.ex.vo.ProductVO;
 @Mapper
 public interface CartMapper {
 	List<CartVO> getList();
+	List<CartVO> getListByUser(String p2user_member_id);//ssj 0203
+	
 	CartVO read(int cart_product_id);
 	void insert(CartVO cart);
 	void update(CartVO cart);

@@ -10,6 +10,8 @@ import edu.kosmo.ex.vo.ProductVO;
 public interface CartService {
 	//List<CartVO> getList();
 	List<CartProductVO> getList();
+	List<CartProductVO> getListByUser(String p2user_member_id);//ssj 0203
+	
 	CartVO get(int cart_product_id);
 	void register(CartVO cart);
 	void modify(CartVO cart);	

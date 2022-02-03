@@ -2,7 +2,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -196,17 +196,17 @@
 										<p>Web ID: 1089772</p>
 									</td>
 									<td class="cart_price">
-										<p>${cartProduct.productVO.product_price} WON</p>
+										<p>${cartProduct.productVO.product_price} 원</p>
 									</td>
 									<td class="cart_quantity">
 										<div class="cart_quantity_button">
 											<a class="cart_quantity_up" href=""> + </a>
-											<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+											<input class="cart_quantity_input" type="text" name="quantity" value=${cartProduct.cartVO.cart_product_quantity} autocomplete="off" size="2">
 											<a class="cart_quantity_down" href=""> - </a>
 										</div>
 									</td>
 									<td class="cart_total">
-										<p class="cart_total_price">$59</p>
+										<p class="cart_total_price">${cartProduct.cartVO.cart_product_total_price} 원</p>
 									</td>
 									<td class="cart_delete">
 										<a class="cart_quantity_delete" href="cart_delete?cart_product_id=${cartProduct.cartVO.cart_product_id}"><i class="fa fa-times"></i></a>

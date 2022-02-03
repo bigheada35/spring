@@ -9,7 +9,13 @@
 	  select * from P2CART
    ]]>
    </select>
-   
+  
+   <select id="getListByUser" resultType="edu.kosmo.ex.vo.CartVO">
+   <![CDATA[
+	  select * from P2CART where P2USER_MEMBER_ID = #{p2user_member_id}	
+   ]]>
+   </select>
+      
    <select id="read" resultType="edu.kosmo.ex.vo.CartVO">
    <![CDATA[
 	  select * from P2CART where cart_product_id = #{cart_product_id}
