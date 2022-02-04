@@ -26,6 +26,19 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="${pageContext.request.contextPath}/resources/eshopper/images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="${pageContext.request.contextPath}/resources/eshopper/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/resources/eshopper/images/ico/apple-touch-icon-57-precomposed.png">
+    
+    
+    <!-- 게시판 리뷰 ajax통신 -->
+    <meta name="_csrf" content="${_csrf.token}"/>
+	<meta name="_csrf_header" content="${_csrf.headerName}"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript">
+	  	function boardWrite() {
+		    /* TODO */
+		    /* TODO */
+		}
+	</script>       
+    
 </head><!--/head-->
 
 <body>
@@ -347,7 +360,7 @@
 						<div class="col-sm-7">
 							<div class="product-information"><!--/product-information-->
 								<img src="${pageContext.request.contextPath}/resources/eshopper/images/product-details/new.jpg" class="newarrival" alt="" />
-								<h2>Anne Klein Sleeveless Colorblock Scuba</h2>
+								<h2>${product.product_name}</h2>
 								<p>Web ID: 1089772</p>
 								<img src="${pageContext.request.contextPath}/resources/eshopper/images/product-details/rating.png" alt="" />
 								<span>
@@ -536,13 +549,28 @@
 							
 							<div class="tab-pane fade active in" id="reviews" >
 								<div class="col-sm-12">
-									<ul>
-										<li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
-										<li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-										<li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
-									</ul>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-									<p><b>Write Your Review</b></p>
+								
+								
+								<c:forEach var="productBoard" items="${productBoardList}">
+										<ul>
+											<li><a href=""><i class="fa fa-user"></i>${productBoard.p2user_member_id}</a></li>
+											<li><a href=""><i class="fa fa-clock-o"></i>${productBoard.board_date}</a></li>
+											<li><a href=""><i class="fa fa-calendar-o"></i>${productBoard.board_title}</a></li>
+										</ul>
+										<p>${productBoard.board_content}</p>
+								
+								
+<!-- 									<ul>
+											<li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
+											<li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
+											<li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
+										</ul>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+-->
+										
+								</c:forEach>
+										<p><b>Write Your Review</b></p>
+								
 									
 									<form action="#">
 										<span>

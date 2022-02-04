@@ -11,6 +11,7 @@ import edu.kosmo.ex.page.Criteria;
 import edu.kosmo.ex.page.PageVO;
 import edu.kosmo.ex.service.CartService;
 import edu.kosmo.ex.service.ProductService;
+import edu.kosmo.ex.service.ProductBoardService;
 import edu.kosmo.ex.vo.ProductVO;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -25,6 +26,9 @@ public class ShopController {
 	
 	@Inject
 	private CartService cartService;
+
+	@Inject
+	private ProductBoardService productBoardService;
 	
 	
 	@GetMapping("/shop.html")
@@ -47,8 +51,14 @@ public class ShopController {
 		if(product_id == 0) {
 			product_id = 1;
 		} 
-		System.out.println("======== product_id : " + product_id);
+		System.out.println("========222 product_id : " + product_id);
 		model.addAttribute("product", productService.get(product_id));
+		
+		/*
+		 * TODO TODO
+		 */
+		model.addAttribute("productBoardList", productBoardService.getListByProductId(product_id));
+		
 		return "shop/product-details"; //use without .jsp
 	}
 
