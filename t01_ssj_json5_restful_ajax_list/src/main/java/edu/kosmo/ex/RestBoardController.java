@@ -30,6 +30,7 @@ public class RestBoardController {
    // 1. list(처음 진입 화면이므로 화면이 깜박여도 상관없으므로 @Controller방식으로 접근 - veiw(화면)를 리턴
    @GetMapping("/board")
    public ModelAndView list(ModelAndView mav) {
+	   System.out.println("-------/board-------");
       mav.setViewName("rest/rest_list");
       mav.addObject("list", boardService.getList());
 
@@ -39,6 +40,7 @@ public class RestBoardController {
    
    @GetMapping("/board/ajaxList")
    public ModelAndView ajaxlist(ModelAndView mav) {
+	   System.out.println("-------/board/ajaxList-------");
   // public List<BoardVO> ajaxlist(ModelAndView mav) {
       mav.setViewName("rest/ajaxList");
       
@@ -51,13 +53,56 @@ public class RestBoardController {
    
    @GetMapping("/board/list")
    public List<BoardVO> boardList(ModelAndView mav) {
+	   System.out.println("-------/board/list-------");
       mav.setViewName("rest/list");
       List<BoardVO> list = boardService.getList();
       return list;
    }
    
+	//ssj 0204
+   @GetMapping("/board/boardVo")
+    public BoardVO boardVo(ModelAndView mav) {
+	   System.out.println("-------/board/boardVo-------");
+      mav.setViewName("rest/list");
+       BoardVO boardVO = boardService.get(10);//ssj 0204 
+       return boardVO;
+       //ssj
+       /*
+ 		1. board/boardVo로 접근시에
+          
+	        전달시 10초코하임w전 집주인이 버리고 간 댕댕이애완동물 등록제 한다더만 아직 안된건가. 유기하면 중죄로 다스리길.163885109100022111
+	        를 리턴함
+			        
+			|----|------	|-----------------		|---------------------------------------			|----------------------|-----|-------|------|--------|
+			|bid |bname 	|btitle           		|bcontent                               			|bdate                 |bhit |bgroup |bstep |bindent |
+			|----|------	|-----------------		|---------------------------------------			|----------------------|-----|-------|------|--------|
+			|10  |초코하임w 	|전 집주인이 버리고 간 댕댕이 	|애완동물 등록제 한다더만 아직 안된건가.유기하면 중죄로 다스리길. 	|2021-12-07 13:24:51.0 |22   |1      |1     |1       |
+			|----|------	|-----------------		|---------------------------------------			|----------------------|-----|-------|------|--------|
 
-   
+
+
+		2. board/boardVo.json으로 접근시에
+		
+			// 20220204193854
+			// http://localhost:8282/ex/rest/board/boardVo.json
+			
+			{
+			  "bid": 10,
+			  "bname": "초코하임w",
+			  "btitle": "전 집주인이 버리고 간 댕댕이",
+			  "bcontent": "애완동물 등록제 한다더만 아직 안된건가.\r\n유기하면 중죄로 다스리길.",
+			  "bdate": 1638851091000,
+			  "bhit": 24,
+			  "bgroup": 1,
+			  "bstep": 1,
+			  "bindent": 1
+			}
+		를 리턴한다.
+
+
+
+        */
+   }
    
    
    @GetMapping("/board/{bid}")

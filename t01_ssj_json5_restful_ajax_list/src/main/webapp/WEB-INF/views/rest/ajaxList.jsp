@@ -35,10 +35,11 @@
 		$.ajax(()=>{
 			type : 'GET',
 			url : url,
-			cache : false,  //이걸 안쓰거나 true하면 수정해도 값 반영이 잘 않됨
+			//cache : false,  //이걸 안쓰거나 true하면 수정해도 값 반영이 잘 않됨
+			cache : true,
 			dataType: 'json',
 			success : function(result){
-				
+				console.log("------success-----")
 				var htmls="";
 				$("#list-table").html("");//테이블 밑의 자식 테그를  모두 없애는 것임.
 				
