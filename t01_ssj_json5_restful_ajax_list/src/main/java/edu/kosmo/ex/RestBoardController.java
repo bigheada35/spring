@@ -46,10 +46,21 @@ public class RestBoardController {
       
       //List<BoardVO> list = boardService.getList();
       //return list;
-
-      
       return mav;
    }
+   //ajaxList2hjs.jsp
+   @GetMapping("/board/ajaxList2")
+   public ModelAndView ajaxlist2(ModelAndView mav) {
+	   System.out.println("-------/board/ajaxList2-------");
+  // public List<BoardVO> ajaxlist(ModelAndView mav) {
+      mav.setViewName("rest/ajaxList2");
+      
+      //List<BoardVO> list = boardService.getList();
+      //return list;
+      return mav;
+   }
+   
+   
    
    @GetMapping("/board/list")
    public List<BoardVO> boardList(ModelAndView mav) {
@@ -121,7 +132,7 @@ public class RestBoardController {
    
    @PutMapping("/board/{bid}")
    public ResponseEntity<String> rest_update(@RequestBody BoardVO boardVO, Model model) {
-      
+	   					//@RequestBody 는  json을 객체로 바궈서 받게 해 준다. 
       ResponseEntity<String> entity = null;
       log.info("rest_update.. boardVO" + boardVO);
       

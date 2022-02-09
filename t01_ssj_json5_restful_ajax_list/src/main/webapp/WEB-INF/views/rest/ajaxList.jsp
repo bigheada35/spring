@@ -31,14 +31,15 @@
 	
 	function getList(){
 		var url = "${pageContext.request.contextPath}/rest/board/list.json";
-		
-		$.ajax(()=>{
+		//var url = "http://146.56.137.240:8282/hjs/rboard/list";
+		//주의  ajax 안에는 Ojbect가 들어 가야 한다. function이 아니다. 주의 ~~
+		$.ajax(  {
 			type : 'GET',
 			url : url,
-			//cache : false,  //이걸 안쓰거나 true하면 수정해도 값 반영이 잘 않됨
-			cache : true,
+			cache : false,  //이걸 안쓰거나 true하면 수정해도 값 반영이 잘 않됨			
 			dataType: 'json',
 			success : function(result){
+				alert("--get??---")
 				console.log("------success-----")
 				var htmls="";
 				$("#list-table").html("");//테이블 밑의 자식 테그를  모두 없애는 것임.
@@ -100,6 +101,7 @@
 	
    <script>
       $(document).ready(function(){
+    	  alert("----ajaxList.jsp---");
          getList();
       });
    </script>

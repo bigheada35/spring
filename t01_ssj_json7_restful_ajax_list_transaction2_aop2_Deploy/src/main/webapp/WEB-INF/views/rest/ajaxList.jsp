@@ -32,7 +32,7 @@
 	function getList(){
 		var url = "${pageContext.request.contextPath}/rest/board/list.json";
 		
-		$.ajax(()=>{
+		$.ajax( {
 			type : 'GET',
 			url : url,
 			cache : false,  //이걸 안쓰거나 true하면 수정해도 값 반영이 잘 않됨
