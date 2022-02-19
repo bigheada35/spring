@@ -47,12 +47,10 @@
 				$("<tr>", {
 					html : "<td>" + "번호" + "</td>" +
 					"<td>" + "이름" + "</td>" +
-					"<td>" + "제모" + "</td>" +
+					"<td>" + "제목" + "</td>" +
 					"<td>" + "날짜" + "</td>" +
 					"<td>" + "히트" + "</td>" 
-					
-					
-					
+				
 					
 				}).appendTo("#list-table")// 이것을 테이블에붙임
 				
@@ -69,12 +67,21 @@
 						 htmls += '<td>'
 
 						for(var i=0; i<this.bindent; i++){
-							htmls += '-';
+							//htmls += '-';
+							
+							if(i == (this.bindent -1)){ 
+								htmls += '&#8627';
+								//htmls += '-';
+							}else{
+								htmls += '&nbsp';
+								htmls += '&nbsp';
+							}
+							
 						}
-						                             htmls += '<a href="${pageContext.request.contextPath}/content_view?bid=' + this.bid + '">' + this.btitle + '</a></td>';
-                              htmls += '<td>'+ this.bdate + '</td>'; 
-                             htmls += '<td>'+ this.bhit + '</td>';   
-                             htmls += '</tr>';  
+						htmls += '<a href="${pageContext.request.contextPath}/content_view?bid=' + this.bid + '">' + this.btitle + '</a></td>';
+						htmls += '<td>'+ this.bdate + '</td>'; 
+						htmls += '<td>'+ this.bhit + '</td>';   
+						htmls += '</tr>';  
 						
 						
 					});

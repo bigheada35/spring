@@ -25,7 +25,7 @@
 					<td><textarea name="bcontent" rows="10"> </textarea></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="submit" value="입력">&nbsp;&nbsp;<a href="list">목록보기</a></td>
+					<td colspan="2"><input type="submit" value="입력1">&nbsp;&nbsp;<a href="list">목록보기</a></td>
 				</tr>
 			</form>
 		

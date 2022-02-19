@@ -108,6 +108,7 @@ public class BoardController {
 	@GetMapping("/write_view")
 	public String write_view() {
 		log.info("write_view()..");
+		System.out.println("---write_view---");
 		return "board/write_view";
 	}
 	@PostMapping("/write")
@@ -115,7 +116,7 @@ public class BoardController {
 		log.info("write()..");
 		
 		boardService.register(boardVO);
-		
-		return "redirect:list";
+		System.out.println("---write---");
+		return "redirect:list2";
 	}
 }

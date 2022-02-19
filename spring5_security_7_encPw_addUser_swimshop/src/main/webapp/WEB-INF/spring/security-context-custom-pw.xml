@@ -12,7 +12,7 @@
         <intercept-url pattern="/" access="permitAll" />
         <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
         
-        
+                
         <!-- ssj 0128 -->
         <intercept-url pattern="/kakao/getAccesToken" access="permitAll" />
         
@@ -20,10 +20,14 @@
         <intercept-url pattern="/cart.html" access="hasRole('USER')" />
         <intercept-url pattern="/cart_add" access="hasRole('USER')" />
         <intercept-url pattern="/checkout.html" access="hasRole('USER')" />
+        
         <!-- ssj 0127  test only-->
         <!-- <intercept-url pattern="/home" access="hasRole('USER')" /> -->
         
         <!-- <intercept-url pattern="/**" access="hasAnyRole('USER, ADMIN')" /> -->
+        
+        
+        
         
         <!-- ssj 0127 -->
         <!-- <form-login login-page="/login/loginForm"
@@ -38,6 +42,8 @@
                     password-parameter="pw" />
          <logout logout-url="/logout"
                 logout-success-url="/" /> 
+             
+             
                 
         <access-denied-handler error-page="/security/accessDenied" />
 

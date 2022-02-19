@@ -132,7 +132,7 @@ public class BoardController {
 		
 		boardService.register(boardVO);
 		
-		return "redirect:list";
+		return "redirect:list2";
 	}	
 	
 	
