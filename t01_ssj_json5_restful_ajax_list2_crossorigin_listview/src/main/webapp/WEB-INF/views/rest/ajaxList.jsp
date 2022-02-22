@@ -30,7 +30,7 @@
 	
 	
 	function getList(){
-	    
+	   alert("---list2list---start---");
 	   	var url = "${pageContext.request.contextPath}/rest/board/list2list.json";
 		//var url = "${pageContext.request.contextPath}/rest/board/list.json";
 		//var url = "http://146.56.137.240:8282/hjs/rboard/list";
@@ -93,53 +93,92 @@
 					htmls += '</tr>';
 				}
 				$("#list-table").append(htmls);
+				
+		         console.log("------------getPageMaker---");
+		         getPageMaker();
+				
 			}
-			
-			
 		});//ajax end
-		
-		//ssj - 0219 - s --------------------------------------------------------
-		var url2 = "${pageContext.request.contextPath}/rest/board/list2page.json";
+	}//getList()
+	
+	function getPageMaker(){
+		console.log("---getPageMaker  list2page---start---");
+	   var url2 = "${pageContext.request.contextPath}/rest/board/list2page.json";
+		//주의  ajax 안에는 Ojbect가 들어 가야 한다. function이 아니다. 주의 ~~
 		$.ajax(  {
 			type : 'GET',
 			url : url2,
 			cache : false,  //이걸 안쓰거나 true하면 수정해도 값 반영이 잘 않됨			
 			dataType: 'json',
 			success : function(result){
-				if(result.length<1){
+				console.log("---getPageMaker  -success-----")
+				var htmls="";
+/*				
+				$("#list-table").html("");//테이블 밑의 자식 테그를  모두 없애는 것임.
+				
+				$("<tr>", {
+					html : "<td>" + "번호" + "</td>" +
+					"<td>" + "이름" + "</td>" +
+					"<td>" + "제목" + "</td>" +
+					"<td>" + "날짜" + "</td>" +
+					"<td>" + "히트" + "</td>" 
+				
 					
+				}).appendTo("#list-table")// 이것을 테이블에붙임
+*/				
+				if(result.length<1){
+                  //htmls.push("등록된 댓글이 없습니다.");
+                  console.log("---getPageMaker result.length<1-----")
 				}else{
-					$(result).each(function(){
-						alert("---list2page---ok---");
-						console.log("pre" + this.pre);
-						console.log("startPage" + this.startPage);
-						console.log("endPage" + this.endPage);
-					       if(this.pre){
-					    	  htmls += '<a href="${pageContext.request.contextPath}/rest/board/list2list${this.makeQuery(this.startPage - 1)}">'«'</a>';
-					       }
-					      
-					       for(var k={this.startPage}; k<{this.endPage}; k++){
-					    	   htmls += '<a href="${pageContext.request.contextPath}/rest/board/list2list${this.makeQuery(idx)}">${k}</a>';
-					       }
-					       if(this.next && this.endPage > 0){
-					    	   htmls += '<a href="${pageContext.request.contextPath}/rest/board/list2list${this.makeQuery(this.endPage +1) }">'»'</a>'
-					       }
-					});
+					console.log("---getPageMaker  result.length----,-")
+					console.log(result);
+					htmls += '<tr>';
+					//htmls+='<td colspan="5"> <a href="${pageContext.request.contextPath}/write_view">글작성</a> </td>';  
+					console.log("pre " + result.pre);
+					console.log("startPage " + result.startPage);
+					console.log("endPage " + result.endPage);
+					htmls +='<td colspan="5">'
+						console.log( "result.startPage : "+ (result.endPage) );
+						console.log("startPage number :  " + ((result.endPage).valueOf() - 1))					
+						console.log("startPage number :  " + ((result.endPage).valueOf() - 1).toString())
+						if(result.pre){
+							/*
+				    	  htmls += '<a href="${pageContext.request.contextPath}/rest/board/list2list?pageNum=';
+				    	  htmls +=	((result.startPage).valueOf() - 1).toString();
+				    	  htmls += '&amount=10">≪</a>';
+				    	  */
+				       }
+				       for(var k=result.startPage; k<result.endPage; k++){
+				    	   /*
+				    	   htmls += '<a href="${pageContext.request.contextPath}/rest/board/list2list?pageNum=';
+				    	   htmls += k - 1;
+				    	   htmls += '&amount=10">'+ k +'</a>';
+				    	   */
+				       }
+				       if(result.next && result.endPage > 0){
+				    	   /*
+				    	 htmls += '<a href="${pageContext.request.contextPath}/rest/board/list2list?pageNum=';
+				    	 htmls += result.endPage +1;
+				    	 htmls += '&amount=10">≫</a>'
+				    	 */
+				       }
+				       
+					htmls += '</td>'; 
+					htmls += '</tr>';
 				}
-
+				$("#list-table").append(htmls);
 			}
-		});	//ajax end	
-		//$("#list-table").append(htmls);
-		//ssj - 0219 - e --------------------------------------------------------
-		
-	}//getList()
+		});//ajax end
+	}//getPageMaker()
 	
 	</script>
 	
    <script>
       $(document).ready(function(){
-    	  alert("----ajaxList.jsp---");
+    	 console.log("----getList----------------");
          getList();
+         //console.log("------------getPageMaker---");
+         //getPageMaker();
       });
    </script>
    

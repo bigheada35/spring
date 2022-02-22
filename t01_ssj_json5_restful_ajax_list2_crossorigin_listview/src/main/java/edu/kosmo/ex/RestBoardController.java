@@ -78,6 +78,8 @@ public class RestBoardController {
    @GetMapping("/board/list2list")
    public List<BoardVO> boardList2list(Criteria cri,ModelAndView mav) {
 	   System.out.println("-------/board/list2Page-------");
+	   System.out.println("-------pageNum-------" + cri.getPageNum());
+	   System.out.println("-------amount-------" + cri.getAmount() );
       //mav.setViewName("rest/list");
       List<BoardVO> list = boardService.getList(cri);
       return list;
