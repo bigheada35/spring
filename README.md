@@ -1,5 +1,5 @@
 # spring
-dev_ssj
+main,,
  db 구축 ===
 ```
 --- 테이블 생성하기
