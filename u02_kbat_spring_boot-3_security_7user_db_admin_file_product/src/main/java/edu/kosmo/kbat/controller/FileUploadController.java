@@ -19,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
+import edu.kosmo.kbat.service.ProductService;
 import edu.kosmo.kbat.service.StorageFileNotFoundException;
 import edu.kosmo.kbat.service.StorageService;
 
@@ -27,6 +29,10 @@ public class FileUploadController {
 
 	private final StorageService storageService;
 
+	@Autowired
+	private	ProductService productService;//ssj
+	
+	
 	@Autowired
 	public FileUploadController(StorageService storageService) {
 		this.storageService = storageService;
@@ -48,8 +54,10 @@ public class FileUploadController {
 
 	@GetMapping("/upload/list2")//ssj
 	public String listUploadedFiles2(Model model) throws IOException {
+
 		
 		System.out.println("==========listUploadedFiles");
+		
 		
 		model.addAttribute("files", storageService.loadAll().map(
 				path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
