@@ -1,7 +1,14 @@
 package edu.kosmo.kbat.controller;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -23,6 +30,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import edu.kosmo.kbat.service.ProductService;
 import edu.kosmo.kbat.service.StorageFileNotFoundException;
 import edu.kosmo.kbat.service.StorageService;
+import edu.kosmo.kbat.vo.ProductVO;
 
 @Controller
 public class FileUploadController {
@@ -57,14 +65,37 @@ public class FileUploadController {
 
 		
 		System.out.println("==========listUploadedFiles");
+		System.out.println("----productService:");
 		
+		List <ProductVO> productVO = productService.getList();
+		for (ProductVO product : productVO) {
+			System.out.println("  ----:" +  product.getCategory_name());
+		}
+		System.out.println("----productService-----2");
+		Stream<Path> fileTree = storageService.loadAll();
+		//fileTree.forEach(System.out::println);
+		System.out.println("----productService---,--2.5");
+		Iterator itr = fileTree.iterator();
+		//List <String> li = (List) fileTree.toArray();
+		//for( int i=0; i< li.size(); i++) {
+		//		System.out.println("__"+i+li.get(i));
+		//}
+		System.out.println("----productService---,,--2.6");
+		while(itr.hasNext()) {
+			String fname = (String) itr.next();
+			//Path path = storageService.load(fname);
+			//System.out.println(itr.next() + ", " + path.toString());
+			//System.out.println(itr.next());
+			System.out.println(fname);
+		}
+		System.out.println("----productService----,+3");
 		
 		model.addAttribute("files", storageService.loadAll().map(
 				path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
 						"serveFile", path.getFileName().toString()).build().toUri().toString())
 				.collect(Collectors.toList()));
 
-		
+		System.out.println("-----=:" );
 		//model.addAttribute("vfile", "/videos/411.mp4");//ssj - test - only
 		
 		//return "thymeleaf/upload/uploadForm";//ssj
@@ -84,7 +115,7 @@ public class FileUploadController {
 	@PostMapping("/upload/fileUpload")//ssj
 	public String handleFileUpload(@RequestParam("file") MultipartFile file,
 			RedirectAttributes redirectAttributes) {
-		System.out.println("==========handleFileUpload");
+		System.out.println("==========file.getName:"+file.getName());
 		storageService.store(file);
 		redirectAttributes.addFlashAttribute("message",
 				"You successfully uploaded " + file.getOriginalFilename() + "!");
