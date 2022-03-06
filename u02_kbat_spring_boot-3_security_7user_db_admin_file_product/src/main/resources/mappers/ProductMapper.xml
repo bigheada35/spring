@@ -50,12 +50,29 @@
 					and 
 					product.product_id = image.product_id 
 					order by 
-					product.product_id
+					product.product_date desc
 		]]>
 	
 	</select>
 	
- 	
+ 	<insert id="write" >
+   		<![CDATA[
+ 			insert into product(product_id, 
+ 					product_name, 
+ 					product_price, 
+ 					product_enable, 
+ 					product_stock, 
+ 					product_description, 
+ 					category_id) 
+ 			values(product_seq.nextval, 
+ 					#{product_name}, 
+ 					#{product_price}, 
+ 					#{product_enable}, 
+ 					#{product_stock}, 
+ 					#{product_description},
+ 					#{category_id})
+  		]]>
+    </insert> 
  
 	 
 </mapper>

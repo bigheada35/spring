@@ -8,7 +8,7 @@ public interface ProductService {
 	
 	List<ProductVO> getList();
 	
-
+	void write(ProductVO product);
 	
-
+	void delete(int product_id);
 }
