@@ -13,5 +13,4 @@ public class HomeController {
 	public String hello() {
 		return "<h1> programmer </h1>";
 	}
-
 }
