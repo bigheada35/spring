@@ -12,24 +12,28 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-//import edu.kosmo.kbat.security.UserCustomDetailsService;
+import edu.kosmo.kbat.security.UserCustomDetailsService;
 
 @Configuration		
 @EnableWebSecurity 
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	
- //   @Autowired
- //   UserCustomDetailsService userCustomDetailsService;
+    @Autowired
+    UserCustomDetailsService userCustomDetailsService;
     
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
     	http.httpBasic().and().authorizeRequests()
     	.antMatchers("/").permitAll()
-    	.antMatchers("/user").permitAll()
-    	.antMatchers("/page2").hasRole("ADMIN")
-    	.antMatchers("/page1").hasRole("USER")
+    	.antMatchers("/add/**").permitAll()
+    	.antMatchers("/upload/**").permitAll()
+    	.antMatchers("/videos/**").permitAll()
+    	.antMatchers("/pay/**").permitAll()
+    	.antMatchers("/main/**").permitAll()
+    	.antMatchers("/user/**").hasRole("USER")
+    	.antMatchers("/admin/**").hasRole("ADMIN")
     	.anyRequest().authenticated()
     	.and().logout().permitAll()
     	.and().formLogin()
@@ -40,16 +44,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	//@Autowired
 	//public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
     
-//    @Override
-//	public void configure(AuthenticationManagerBuilder auth) throws Exception{		
-//		auth.inMemoryAuthentication()
-//			.withUser("kbatadmin").password(passwordEncoder().encode("1234")).roles("ADMIN");
-//		auth.inMemoryAuthentication()
-//			.withUser("kbatuser").password(passwordEncoder().encode("1234")).roles("USER");
-//		
-//        auth.userDetailsService(userCustomDetailsService)
-//        .passwordEncoder(passwordEncoder());
-//	}
+    @Override
+	public void configure(AuthenticationManagerBuilder auth) throws Exception{		
+		auth.inMemoryAuthentication()
+			.withUser("kbatadmin").password(passwordEncoder().encode("1234")).roles("ADMIN");
+		auth.inMemoryAuthentication()
+			.withUser("kbatuser").password(passwordEncoder().encode("1234")).roles("USER");
+		
+        auth.userDetailsService(userCustomDetailsService)
+        .passwordEncoder(passwordEncoder());
+	}
 
     @Bean
     public PasswordEncoder passwordEncoder() {
