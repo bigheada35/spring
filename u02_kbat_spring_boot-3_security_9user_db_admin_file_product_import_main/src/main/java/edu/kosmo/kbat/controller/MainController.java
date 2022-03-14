@@ -37,6 +37,27 @@ public class MainController {
 	public void main(Model model) {
 		System.out.println("----main----");
 		List <ProductVO> productVO = productService.getList();
+
+		final int NameLimit = 15;
+		final int DescLimit = 25;
+		for (ProductVO productVO2 : productVO) {
+			String strName = productVO2.getProduct_name();
+			String strDesc = productVO2.getProduct_description();
+			if(strDesc != null) {
+				if(strDesc.length() > DescLimit) {
+					//System.out.print("--"+ strDesc.substring(0, 25));
+					//System.out.println("--length:"+ strDesc.length());
+					productVO2.setProduct_description(strDesc.substring(0, DescLimit));
+				}
+			}
+			if(strName != null) {
+				if(strName.length() > NameLimit) {
+					productVO2.setProduct_name(strName.substring(0,NameLimit));
+				}
+			}
+			
+		}
+		
 		model.addAttribute("products", productVO);
 	}
 	@GetMapping("/main/detail")

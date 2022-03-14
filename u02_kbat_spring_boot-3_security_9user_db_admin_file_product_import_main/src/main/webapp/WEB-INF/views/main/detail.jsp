@@ -25,7 +25,7 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="album.css" rel="stylesheet">
+    <link href="/css/album.css" rel="stylesheet">
     
      
   </head>
@@ -70,7 +70,7 @@
       <p class="lead text-muted">${prod.product_description}</p>
       <p>
       		<!-- controls loop muted style="width:100%"-->	
-	      	<video width="600" height="500" autoplay/>
+	      	<video width="600" height="500" autoplay controls/>
 	         	<source src="<c:url value="${prod.video_name}"/>" type="video/mp4">
 		    </video>
       </p>
@@ -89,12 +89,12 @@
 		        <div class="col-md-3">
 		          <div class="card mb-4 shadow-sm">
 					<!--<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-		            <img class="bd-placeholder-img card-img-top" src="<c:url value="${prod.image_name}"/>" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">${status.index} ${prod.product_name}</text></svg>
+		            <img class="bd-placeholder-img card-img-top" src="<c:url value="${prod.image_name}"/>" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">${status.index+1} ${prod.product_name}</text></svg>
 		            <%-- <img class="card-img-top" src="<c:url value="${prod.image_name}"/>" style="min-height:250px;"/> --%>
 		            <div class="card-body">
-		              <p class="card-text">${status.index}${prod.product_description}</p>
-		              <p class="card-text">가격 : ${status.index}${prod.product_price} 원</p>
-		              <p class="card-text">${status.index}${prod.product_date}</p>
+		              <p class="card-text">${prod.product_description}</p>
+		              <p class="card-text">가격 : ${prod.product_price} 원</p>
+		              <p class="card-text">${prod.product_date}</p>
 		              <div class="d-flex justify-content-between align-items-center">
 		              	<a href="/main/playVideo?product_id=${prod.product_id}" class="btn btn-primary my-2">Play</a>
 		                <small class="text-muted">9 mins</small>
@@ -123,5 +123,5 @@
   </div>
 </footer>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/css/assets/dist/js/bootstrap.bundle.min.js"></script>
 </html>
