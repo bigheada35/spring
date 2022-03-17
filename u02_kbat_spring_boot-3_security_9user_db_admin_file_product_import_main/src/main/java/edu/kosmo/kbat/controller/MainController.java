@@ -28,11 +28,6 @@ public class MainController {
 	@Autowired
 	private	ProductService productService;
    
-	@GetMapping("/pay/import")
-	public void import2() {
-		System.out.println("----import----");
-		//return "/pay/import"
-	}
 	@GetMapping("/main/main")
 	public void main(Model model) {
 		System.out.println("----main----");
