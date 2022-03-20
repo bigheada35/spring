@@ -15,7 +15,7 @@
    
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 	
 	<script type="text/javascript">
@@ -72,7 +72,7 @@
                 $(responseStrHtml_1).append("<b>실패 : 코드[ " + rsp.error_code +"] </b><br/>" );
                 $(responseStrHtml_1).append("<b>실패 : 메세지[ " + rsp.error_msg +"] </b><br/>" );
                 
-                alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
+                //alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
                                 
                 //////////////////////////////////
                 //test to send data to controller
@@ -84,9 +84,9 @@
 				$.ajax({
                 	type: 'POST',
                 	//url: `${pageContext.request.contextPath}/kakao/getAccesToken`,
-                	url: "${pageContext.request.contextPath}/pay/getToken",
+                	//url: "${pageContext.request.contextPath}/pay/getAccesToken",
                 	//url: `rest/pay/getToken`,
-                	//url: `pay/getToken`,
+                	url: `/pay/getAccesToken`,
                     beforeSend: function(xhr) {  /* ssj 0128 csrf  */
                         xhr.setRequestHeader(header, token); /* ssj 0128 csrf  */
                      //	xhr.setRequestHeader("X-CSRF-Token", "${_csrf.token}");
@@ -116,7 +116,7 @@
     
     function getAccessToken(data){
     	console.log("---getAccessToken---");
-        
+        	
         $(responseStrHtml_2).html("");
         $(responseStrHtml_2).append("<br/>")
         $(responseStrHtml_2).append("<br/>")
@@ -131,32 +131,33 @@
         
         $.ajax({
         	type: 'POST',
+        	//cache : false,
         	url: 'https://api.iamport.kr/users/getToken',
-            beforeSend: function(xhr) {  /* ssj 0128 csrf  */
-                xhr.setRequestHeader(header, token); /* ssj 0128 csrf  */
-             //	xhr.setRequestHeader("X-CSRF-Token", "${_csrf.token}");
-             },
+            //beforeSend: function(xhr) {  /* ssj 0128 csrf  */
+            //    xhr.setRequestHeader(header, token); /* ssj 0128 csrf  */
+            // //	xhr.setRequestHeader("X-CSRF-Token", "${_csrf.token}");
+            // },
         	headers:{"Content-Type":"application/json"},
-        	contentType:"application/json",
+        	//contentType:"application/json",
         	data:{
         		imp_key:"4645602351310261",// REST API키
         		imp_secret:"a0508214c06f1ece211951b540c05d9ac0108a27981e1f1503ff130c7eecf8b71f22faede5b7519c"// REST API Secret
         	},
-        	dataType:"JSON",
+        	//dataType:"JSON",
         	//data: JSON.stringify({'imp_key':"4645602351310261",'imp_secret':"a0508214c06f1ece211951b540c05d9ac0108a27981e1f1503ff130c7eecf8b71f22faede5b7519c"}),
-        	success : function(data){
-        		//통신이 성공적으로 이루어졌을때 이 함수를 타게된다.
-        		console.log("---success--");
-        		console.log(data);
-        		console.log(data.response);
-        		$(responseStrHtml_2).append("<b>통신이 성공</b><br/>")
-        	},
-        	complete : function(data){
-        		//통신이 실패했어도 완료가 되었을때 이 함수를 타게 된다.
-        		console.log("--complete--");
-        		console.log(data);
-        		$(responseStrHtml_2).append("<b>통신이 실패했어도 완료</b><br/>")
-        	},
+        	//success : function(data){
+        	//	//통신이 성공적으로 이루어졌을때 이 함수를 타게된다.
+        	///	console.log("---success--");
+        	//	console.log(data);
+        	//	console.log(data.response);
+        	//	$(responseStrHtml_2).append("<b>통신이 성공</b><br/>")
+        	//},
+        	//complete : function(data){
+        	//	//통신이 실패했어도 완료가 되었을때 이 함수를 타게 된다.
+        	//	console.log("--complete--");
+        	//	console.log(data);
+        	//	$(responseStrHtml_2).append("<b>통신이 실패했어도 완료</b><br/>")
+        	//},
         	error:function(xhr,status,error){
         		console.log(error);
         		$(responseStrHtml_2).append("<b>에러:</b><br/>")
@@ -167,28 +168,130 @@
         	console.log("---요청성공~!---");
         	$(responseStrHtml_2).append("<b>요청성공~!</b><br/>")
         })
-        /*
-        url: "https://api.iamport.kr/users/getToken", 처럼 사용한 경우 에러 발생 내용 :
-        	
-        DOMException: Failed to execute 'setRequestHeader' on 'XMLHttpRequest': '' is not a valid HTTP header field name.
-	    at Object.send (https://code.jquery.com/jquery-1.12.4.min.js:4:26547)
-	    at Function.ajax (https://code.jquery.com/jquery-1.12.4.min.js:4:22180)
-	    at getAccessToken (http://localhost:8282/pay/import:66:11)
-	    at HTMLButtonElement.<anonymous> (http://localhost:8282/pay/import:104:4)
-	    at HTMLButtonElement.dispatch (https://code.jquery.com/jquery-1.12.4.min.js:3:12444)
-	    at HTMLButtonElement.r.handle (https://code.jquery.com/jquery-1.12.4.min.js:3:9173)
-        */
+
     }
 	
+    
+    function getAccessToken_a(data){
+    	console.log("---getAccessToken_a---");
+        	
+        $(responseStrHtml_2a).html("");
+        $(responseStrHtml_2a).append("<br/>")
+        $(responseStrHtml_2a).append("<br/>")
+        
+        
+		$.ajax({
+			type : "post",
+			url : "https://api.iamport.kr/users/getToken",
+			//dataType : "json",
+			success : function(data) {
+				// 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
+				//console.log(data);
+				var result = JSON.parse(data);
+			},
+			error : function(xhr, status, error) {
+				console.log(error);
+			},
+            data: {
+                imp_key: "4645602351310261", // [아임포트 관리자] REST API키
+                imp_secret: "a0508214c06f1ece211951b540c05d9ac0108a27981e1f1503ff130c7eecf8b71f22faede5b7519c" // [아임포트 관리자] REST API Secret
+            }
+		});
+        
+   
+    }
+    
+    
+    
+    function ajaxTest(data){
+    	console.log("---ajaxTest---");
+        	
+        $(responseStrHtml_3).html("");
+        $(responseStrHtml_3).append("<br/>")
+        $(responseStrHtml_3).append("<br/>")
+        
+
+        var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+        
+		
+		$.ajax({
+        	type: 'POST',
+        	url: "${pageContext.request.contextPath}/pay/getAccesToken",
+			contentType: "application/json",
+        	data:{
+        		imp_key:"4645602351310261",// REST API키
+        		imp_secret:"a0508214c06f1ece211951b540c05d9ac0108a27981e1f1503ff130c7eecf8b71f22faede5b7519c"// REST API Secret
+        	},
+        	success: function (response) {
+        		$(responseStrHtml_3).append("<b> 컨트롤러에서 응답 OK </b><br/>");
+        	},        	
+        	error:function(xhr,status,error){
+        		console.log(error);
+        		$(responseStrHtml_2).append("<b>에러:</b><br/>")
+        	}
+        }).done(function(data){
+        	$(responseStrHtml_3).append("<b> 컨트롤러에 전송 완료 </b><br/>");	
+        });  
+		
+    }
+    
+    
+    function ajaxTest2(data){
+    	console.log("---ajaxTest2---");
+        	
+        $(responseStrHtml_4).html("");
+        $(responseStrHtml_4).append("<br/>")
+        $(responseStrHtml_4).append("<br/>")
+        
+
+        var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+        
+		//주의할점 : controller에서  csrf disable 상태인데, csrf를 넣어서 보내면
+			//controller안의 RestController에 전달이 제대로 않된다.
+		$.ajax({
+        	type: 'POST',
+        	url: "${pageContext.request.contextPath}/pay/getAccesToken",
+            //beforeSend: function(xhr) {  
+            //    xhr.setRequestHeader(header, token);
+            //},
+			//dataType: 'json',
+        	success: function (response) {
+        		$(responseStrHtml_4).append("<b> 컨트롤러에서 응답 OK </b><br/>");
+        	}
+			//statusCode: {
+			//	404: function() {
+			//		alert( "404 ,page not found" );
+			//	}
+			//}
+        }).done(function(data){
+        	$(responseStrHtml_4).append("<b> 컨트롤러에 전송 완료 </b><br/>");	
+        });  
+		
+    }
+    
+    
 	//문서가 준비되면 제일먼저 실행
 	$(document).ready(function(){
 		$("#iamportPayment").click(function(){
 			payment();//버튼 클릭하면 호출
 		});
-		//test
+
 		$("#getAccessToken").click(function(){
 			getAccessToken();//버튼 클릭하면 호출
 		});
+		$("#getAccessToken_a").click(function(){
+			getAccessToken_a();//버튼 클릭하면 호출
+		});	
+		$("#ajaxTest").click(function(){
+			ajaxTest();//버튼 클릭하면 호출
+		});
+		
+		$("#ajaxTest2").click(function(){
+			ajaxTest2();//버튼 클릭하면 호출
+		});
+		
 	});
 	
 	//alert("---3---");
@@ -218,6 +321,29 @@
 			<div id="responseStrHtml_2">
 
 			</div>
+
+			<li>
+				<button id="getAccessToken_a" type="button">억세스토큰 받기a</button>
+			</li>
+			<div id="responseStrHtml_2a">
+
+			</div>
+
+
+			<li>
+				<button id="ajaxTest" type="button">ajax 테스트( jsp -> controller )</button>
+			</li>
+			<div id="responseStrHtml_3">
+
+			</div>
+
+			<li>
+				<button id="ajaxTest2" type="button">ajaxTest2 테스트( jsp -> controller )</button>
+			</li>
+			<div id="responseStrHtml_4">
+
+			</div>
+			
 		</div>
 
 

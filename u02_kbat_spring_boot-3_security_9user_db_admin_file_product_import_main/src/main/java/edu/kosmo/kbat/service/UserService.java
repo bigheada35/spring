@@ -45,7 +45,7 @@ public class UserService {
    public void addAdmin(UserVO userVO) {
 	   
 	  //System.out.println("==========addUser:"+userVO.getUsername() +","+userVO.getPassword());
-	   System.out.println("==========addUser:"+userVO.getMember_id() +","+userVO.getPassword());
+	   System.out.println("==========addAdmin:"+userVO.getMember_id() +","+userVO.getPassword());
 	   
       String password = userVO.getPassword();
       String encode = passEncoder.encode(password);

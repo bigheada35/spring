@@ -10,10 +10,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
 
 import edu.kosmo.kbat.service.ProductService;
 import edu.kosmo.kbat.service.UserService;
@@ -24,25 +28,29 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @AllArgsConstructor
+@CrossOrigin
 //@Controller
 @RestController
-@RequestMapping("/pay/*")
+@RequestMapping("/pay")
 public class PayController {
 	
 	@Autowired
 	private	ProductService productService;
    
 	@GetMapping("/import")
-	public void import2() {
+	public ModelAndView import2(ModelAndView mav) {
 		System.out.println("----import----");
-		//return "/pay/import"
+		mav.setViewName("pay/import");
+		return mav;
 	}
 	
 	@PostMapping(value = "/getAccesToken")
-	public String getToken() throws Exception {
-		System.out.println("----getToken----");
+	//@PostMapping("/getAccesToken")
+	public String getAccesToken(ModelAndView mav){
+		System.out.println("----getAccesToken----");
 		//return "/pay/import"
-		return "redirect:/";
+		//return "redirect:/";
+		return "";
 	}
 	
 
